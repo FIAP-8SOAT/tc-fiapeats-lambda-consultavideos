@@ -1,0 +1,43 @@
+name: fiapeats-lambda-consultavideos
+services:
+  postgres:
+    container_name: postgres-lambda-consultavideos
+    image: postgres
+    environment:
+      POSTGRES_USER: sa
+      POSTGRES_PASSWORD: fiapeatsdb-pass
+      POSTGRES_DB: fiapeatsdb
+      PGDATA: /var/lib/postgresql/data
+
+    volumes:
+      - vol_postgres_lambda_consultavideos:/var/lib/postgresql/data
+      - ./sqlScripts:/docker-entrypoint-initdb.d
+
+    ports:
+      - "5434:5432"
+    networks:
+      - net-postgres-lambda-consultavideos
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin_container_lambda_consultavideos
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: vithorescames@hotmail.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - vol_pgadmin_container_lambda_consultavideos:/var/lib/pgadmin
+    ports:
+      - "5052:80"
+    networks:
+      - net-postgres-lambda-consultavideos
+    restart: unless-stopped
+
+networks:
+  net-postgres-lambda-consultavideos:
+    driver: bridge
+
+volumes:
+  vol_postgres_lambda_consultavideos:
+  vol_pgadmin_container_lambda_consultavideos:

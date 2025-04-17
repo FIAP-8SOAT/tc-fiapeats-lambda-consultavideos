@@ -1,0 +1,66 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws# Diretórios gerados pelo SAM
+.aws-sam/
+.events/        # Se for pasta usada só para testes de eventos JSON
+
+# Build Java (Maven)
+dependency-reduced-pom.xml
+target/
+*.class
+
+# IntelliJ config
+.idea/
+*.iml
+
+# Arquivos de sistema/IDE
+*.log
+.DS_Store
+Thumbs.db
+
+# Docker
+*.pid
+*.log
+*.env
+docker-compose.override.yml
+
+# AWS Toolkit / credenciais locais (se usar)
+.aws/
+samconfig.toml
+
+# Node (se usar em alguma parte do projeto no futuro)
+node_modules/
+
+# Arquivos específicos do Windows
+*.bak
+*.tmp
+
+# Diretório de estado local do Terraform
+.terraform/
+.terraform.lock.hcl
+
+# Arquivos de estado e backup
+terraform.tfstate
+terraform.tfstate.backup
+
+# Planos temporários
+*.tfplan
+
+# Arquivos sensíveis (se você usar)
+.env
+*.auto.tfvars
