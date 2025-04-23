@@ -4,9 +4,9 @@ services:
     container_name: postgres-lambda-consultavideos
     image: postgres
     environment:
-      POSTGRES_USER: sa
-      POSTGRES_PASSWORD: fiapeatsdb-pass
-      POSTGRES_DB: fiapeatsdb
+      #POSTGRES_USER: sa
+      #POSTGRES_PASSWORD: fiapeatsdb-pass
+      #POSTGRES_DB: fiapeatsdb
       PGDATA: /var/lib/postgresql/data
 
     volumes:
