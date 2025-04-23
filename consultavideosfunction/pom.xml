@@ -64,7 +64,6 @@
     </dependencies>
 
     <build>
-        <finalName>consultavideos-1.0-shaded</finalName> <!-- nome do jar gerado -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
