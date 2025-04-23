@@ -62,7 +62,7 @@ resource "aws_iam_role_policy_attachment" "lambda_basic_logs" {
 resource "aws_lambda_function" "consultavideos" {
   function_name = "fiapeats-lambda-consultavideos"
   role          = aws_iam_role.lambda_exec_role.arn
-  handler       = "br.com.fiap.consultavideos.App::handleRequest"
+  handler       = "br.com.fiap.consultavideos.App"
   runtime       = "java17"
   filename      = "${path.module}/../build/function.zip"
   source_code_hash = filebase64sha256("${path.module}/../build/function.zip")
