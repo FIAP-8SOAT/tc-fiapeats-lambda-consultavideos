@@ -18,6 +18,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          
+      - name: Rodar testes unitários com Maven
+        run: mvn test --file consultavideosfunction/pom.xml
 
       - name: Build da Lambda com Maven
         run: mvn clean package shade:shade --file consultavideosfunction/pom.xml

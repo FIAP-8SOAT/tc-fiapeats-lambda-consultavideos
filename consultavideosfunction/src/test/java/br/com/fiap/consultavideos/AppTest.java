@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 
 class AppTest {
 
-    /*private App app;
+    private App app;
     private VideoRepository mockRepo;
     private Context mockContext;
 
@@ -98,5 +98,5 @@ class AppTest {
 
         assertEquals(500, response.getStatusCode());
         assertTrue(response.getBody().contains("DB fail"));
-    }*/
+    }
 }

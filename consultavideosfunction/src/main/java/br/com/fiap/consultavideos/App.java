@@ -20,7 +20,15 @@ import java.util.Map;
  */
 public class App implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
-    private final VideoRepository repo = new VideoRepository();
+    private final VideoRepository repo;
+
+    public App() {
+        this.repo = new VideoRepository();
+    }
+
+    public App(VideoRepository repo) {
+        this.repo = repo;
+    }
 
     public APIGatewayProxyResponseEvent handleRequest(final APIGatewayProxyRequestEvent input, final Context context) {
 
