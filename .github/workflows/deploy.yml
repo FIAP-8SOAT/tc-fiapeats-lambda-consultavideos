@@ -20,7 +20,8 @@ jobs:
           distribution: 'temurin'
 
       - name: Build da Lambda com Maven
-        run: mvn clean package shade:shade --file consultavideosfunction/pom.xml
+        working-directory: consultavideosfunction
+        run: mvn clean package shade:shade
 
       - name: 📦 Verificar arquivos gerados
         run: ls -l consultavideosfunction/target
@@ -28,9 +29,9 @@ jobs:
       - name: Criar pacote .zip para Lambda
         run: |
           mkdir -p build
-          cp consultavideosfunction/target/consultavideos-1.0.jar build/
+          cp consultavideosfunction/target/consultavideos-1.0-shaded.jar build/
           cd build
-          zip function.zip consultavideos-1.0.jar
+          zip function.zip consultavideos-1.0-shaded.jar
           cd ..
 
       - name: Configurar credenciais da AWS
