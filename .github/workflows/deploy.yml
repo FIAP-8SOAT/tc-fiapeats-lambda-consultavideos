@@ -1,0 +1,51 @@
+name: Deploy Lambda com Terraform
+
+on:
+  push:
+    branches:
+      - main  # ou outra branch que quiser usar pra deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v3
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build da Lambda com Maven
+        run: mvn clean package --file consultavideosfunction/pom.xml
+
+      - name: Criar pacote .zip para Lambda
+        run: |
+          mkdir -p build
+          cp consultavideosfunction/target/*.jar build/
+          cd build
+          zip function.zip *.jar
+          cd ..
+
+      - name: Configurar credenciais da AWS
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.6.6
+
+      - name: Terraform Init
+        working-directory: terraform
+        run: terraform init
+
+      - name: Terraform Apply
+        working-directory: terraform
+        run: terraform apply -auto-approve
