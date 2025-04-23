@@ -22,6 +22,9 @@ jobs:
       - name: Build da Lambda com Maven
         run: mvn clean package shade:shade --file consultavideosfunction/pom.xml
 
+      - name: 📦 Verificar arquivos gerados
+        run: ls -l consultavideosfunction/target
+
       - name: Criar pacote .zip para Lambda
         run: |
           mkdir -p build
