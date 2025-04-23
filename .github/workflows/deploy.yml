@@ -25,9 +25,9 @@ jobs:
       - name: Criar pacote .zip para Lambda
         run: |
           mkdir -p build
-          cp consultavideosfunction/target/*.jar build/
+          cp consultavideosfunction/target/function.jar build/
           cd build
-          zip function.zip *.jar
+          zip function.zip function.jar
           cd ..
 
       - name: Configurar credenciais da AWS
